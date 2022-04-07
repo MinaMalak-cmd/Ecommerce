@@ -1,12 +1,14 @@
 import "./App.css";
-import { Navbar, Nav, Badge,Button } from "react-bootstrap";
+import { Navbar, Nav, Badge, Button } from "react-bootstrap";
 import img from "./assets/img.svg";
 import cart from "./assets/cart.svg";
 import data from "./data/db.json";
-import {IProduct} from "./Interface/IProduct";
+import { IProduct } from "./Interface/IProduct";
 function App() {
-  const products =data.products;
-  const featuredProduct =products.filter(product => product.featured === true)[0] as IProduct;
+  const products = data.products;
+  const featuredProduct = products.filter(
+    (product) => product.featured === true
+  )[0] as IProduct;
   return (
     <div className="container container-fluid py-3">
       {/* NavBar  */}
@@ -30,14 +32,28 @@ function App() {
           <p className="main-section__header">{featuredProduct.name}</p>
         </div>
         <div className="col-lg-3 col-sm-12">
-          <Button variant="dark" className="main-section__button">Add to cart</Button>
+          <Button variant="dark" className="main-section__button">
+            Add to cart
+          </Button>
         </div>
         <div className="col-lg-12 main-section__img-container">
-          <span className="main-section__img-container__description">Featured</span>
-          <img src={featuredProduct.image.src} alt="product" width="100%"/>
+          <span className="main-section__img-container__description">
+            Featured
+          </span>
+          <img src={featuredProduct.image.src} alt="product" width="100%" />
         </div>
       </section>
-      
+      {/* Product details */}
+      <section className="row mt-1 product-detail">
+        <div className="col-lg-6">
+          Hi1
+        </div>
+        <div className="col-lg-6">
+          <h3>About the {featuredProduct.name}</h3>
+          <span>{featuredProduct.category}</span>
+          <p>{featuredProduct?.details?.description}</p>
+        </div>
+      </section>
     </div>
   );
 }
