@@ -55,15 +55,15 @@
             "price":101,
             "currency":"USD",
             "image":{
-                "src":"https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png",
+                "src":"https://th.bing.com/th/id/R.0552978df629ebb180f3e128595f5214?rik=mC9g4HIXnllMhQ&riu=http%3a%2f%2fgetwallpapers.com%2fwallpaper%2ffull%2fc%2f1%2fe%2f948280-dark-cloud-wallpaper-2560x1600-tablet.jpg&ehk=6Gu26W7HihDy8NtHNTvIjiXn3CxEUAKeqqM1OXGB4sU%3d&risl=&pid=ImgRaw&r=0",
                 "alt":"Recycled Plastic"
             },
             "bestseller":false,
             "featured":true,
             "details":{
                 "description":"",
-                "weight":"2340",
-                "thickness":"2",
+                "weight":2340,
+                "thickness":2,
                 "recommendations":[
                     {
                         "src":"",

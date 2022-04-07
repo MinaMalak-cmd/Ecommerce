@@ -10,9 +10,11 @@
   right: 0;
   bottom: -5px;
 }
-.main-section{
+
+.main-section {
   padding: 0;
 }
+
 .main-section__header {
   font-family: Archivo;
   font-size: 32px;
@@ -20,15 +22,33 @@
   line-height: 35px;
   letter-spacing: 0em;
 }
-.pos-relative{
+
+.pos-relative {
   position: relative;
 }
-.main-section__button{
+
+.main-section__button {
   position: absolute;
   right: 0;
 }
+
+.main-section__img-container {
+  position: relative;
+}
+
+.main-section__img-container__description {
+  background: white;
+  width: 150.8px;
+  height: 47px;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 700;
+  border: 1px solid black;
+}
 @media only screen and (max-width: 900px) {
-  .main-section__button{
+  .main-section__button {
     width: 100%;
   }
 }
