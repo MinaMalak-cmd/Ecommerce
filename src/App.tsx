@@ -29,10 +29,10 @@ function App() {
         <div className="col-lg-5">
           <p className="main-section__header">{featuredProduct.name}</p>
         </div>
-        <div className="col-md-3 col-sm-12">
+        <div className="col-lg-3 col-sm-12">
           <Button variant="dark" className="main-section__button">Add to cart</Button>
         </div>
-        <div className="col-lg-12 main-section__img-container p-0">
+        <div className="col-lg-12 main-section__img-container">
           <span className="main-section__img-container__description">Featured</span>
           <img src={featuredProduct.image.src} alt="product" width="100%"/>
         </div>
