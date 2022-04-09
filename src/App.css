@@ -163,9 +163,16 @@
   max-width: 30%;
   width: 281px;
   height:391px;
+  position: relative;
 }
 .product-list__items__products__container__product__img{
   border: 1px solid rgb(38, 92, 219);
+}
+.product-list__items__products__container__product__button{
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
 }
 @media only screen and (max-width: 900px) {
   .main-section__button {
