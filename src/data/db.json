@@ -66,16 +66,16 @@
                 "thickness":2,
                 "recommendations":[
                     {
-                        "src":"",
-                        "alt":""
+                        "src":"https://img3625.weyesimg.com/uploads/phet4kp4.allweyes.com/images/15033725107014.jpg",
+                        "alt":"wood"
                     },
                     {
-                        "src":"",
-                        "alt":""
+                        "src":"https://th.bing.com/th/id/OIP.a38eQmZcE9BHeV4USKOmzgAAAA?pid=ImgDet&rs=1",
+                        "alt":"foam"
                     },
                     {
-                        "src":"",
-                        "alt":""
+                        "src":"https://th.bing.com/th/id/OIP.9Cz35QaAPhlgdxlfCe96BQHaE6?pid=ImgDet&rs=1",
+                        "alt":"glass"
                     }
                 ]
             }

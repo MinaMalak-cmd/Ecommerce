@@ -14,6 +14,6 @@ export interface IProduct{
         description:string;
         weight:number;
         thickness:number;
-        recommedations?:IImage[];
+        recommendations?:IImage[];
     }
 }

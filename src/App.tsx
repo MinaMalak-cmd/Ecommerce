@@ -1,5 +1,5 @@
 import "./App.css";
-import { Navbar, Nav, Badge, Button } from "react-bootstrap";
+import { Navbar, Nav, Badge, Button, Card } from "react-bootstrap";
 import img from "./assets/img.svg";
 import cart from "./assets/cart.svg";
 import data from "./data/db.json";
@@ -44,14 +44,41 @@ function App() {
         </div>
       </section>
       {/* Product details */}
-      <section className="row mt-1 product-detail">
+      <section className="row mt-5 product-detail">
         <div className="col-lg-6">
-          Hi1
+          <h3 className="product-detail__material__heading">
+            Materials people also use
+          </h3>
+          <div className="d-flex">
+            {featuredProduct?.details?.recommendations?.map((item) => (
+              <div className="" key={item.src}>
+                <img
+                  src={item.src}
+                  alt={item.alt}
+                  className="product-detail__material__image"
+                />
+              </div>
+            ))}
+          </div>
+          <div className="product-detail__material__details__heading">
+            <h3 className="product-detail__material__details__heading">
+              Details
+            </h3>
+            <div className="product-detail__material__details__desc">
+              Weight : {featuredProduct?.details?.weight} g/m2
+              <br />
+              Thickness : {featuredProduct?.details?.thickness} cm
+            </div>
+          </div>
         </div>
         <div className="col-lg-6">
-          <h3>About the {featuredProduct.name}</h3>
-          <span>{featuredProduct.category}</span>
-          <p>{featuredProduct?.details?.description}</p>
+          <h3 className="product-detail__heading">
+            About the {featuredProduct.name}
+          </h3>
+          <div className="product-detail__cat">{featuredProduct.category}</div>
+          <p className="product-detail__desc">
+            {featuredProduct?.details?.description}
+          </p>
         </div>
       </section>
     </div>
