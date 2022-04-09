@@ -34,6 +34,9 @@ function Product(props: IProps) {
             Best seller
           </span>
         )}
+        <div className="product-list__items__products__container__product__cat">{product.category}</div>
+        <h3 className="product-list__items__products__container__product__name">{product.name}</h3>
+        <div className="product-list__items__products__container__product__price">$ {product.price}</div>
       </div>
     </>
   );
