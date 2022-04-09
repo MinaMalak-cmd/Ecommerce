@@ -147,6 +147,9 @@
 .product-list__items__filter-settings{
   width: 33%;
 }
+.product-list__items__products{
+  width: 67%;
+}
 @media only screen and (max-width: 900px) {
   .main-section__button {
     width: 96%;

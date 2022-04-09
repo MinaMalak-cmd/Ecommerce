@@ -13,6 +13,8 @@ import filterImg from "./assets/filterSettings.svg";
 import updown from "./assets/updown.svg";
 import data from "./data/db.json";
 import { IProduct } from "./Interface/IProduct";
+import Product from "./components/Product/Product";
+
 function App() {
   const products = data.products;
   const featuredProduct = products.filter(
@@ -130,14 +132,9 @@ function App() {
           <div className="product-list__items__products">
             <div className="d-flex">
               {products.map((item,index) => {
-                console.log(item.image.src);
                 return (
-                  <div className="" key={index}>
-                    <img
-                      src={item.image.src}
-                      alt={item.image.alt}
-                      className="product-detail__material__image" />
-                  </div>
+                  <Product product={item} key={index}/>
+                  
                 );
               })}
             </div>

@@ -6,7 +6,7 @@
             "price":33.78,
             "currency":"USD",
             "image":{
-                "src":"https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png",
+                "src":"https://www.myni.life/wp-content/uploads/2019/05/plastics.png",
                 "alt":"Reinforced"
             },
             "bestseller":true,
@@ -14,13 +14,26 @@
             "details":null
         },
         {
-            "name":"Shape",
-            "category":"steel",
+            "name":"product2",
+            "category":"glass",
+            "price":10,
+            "currency":"USD",
+            "image":{
+                "src":"https://th.bing.com/th/id/R.279e7df5dba827962bea258839204c78?rik=O1%2bZ4WbOWAbJwg&pid=ImgRaw&r=0",
+                "alt":"product2"
+            },
+            "bestseller":false,
+            "featured":false,
+            "details":null
+        },
+        {
+            "name":"Product3",
+            "category":"brick",
             "price":93.89,
             "currency":"USD",
             "image":{
-                "src":"https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png",
-                "alt":"product2"
+                "src":"https://th.bing.com/th/id/OIP.MwwhbzzOqWFsjV9H5dEv-QHaEG?pid=ImgDet&rs=1",
+                "alt":"product3"
             },
             "bestseller":false,
             "featured":false,
@@ -32,7 +45,7 @@
             "price":120.21,
             "currency":"USD",
             "image":{
-                "src":"https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png",
+                "src":"https://th.bing.com/th/id/R.dcf8b1d68f199a7f9544f692ab04dc2e?rik=geFZUTBMa863sw&pid=ImgRaw&r=0",
                 "alt":"Wave"
             },
             "bestseller":false,
@@ -45,7 +58,7 @@
             "price":33.78,
             "currency":"USD",
             "image":{
-                "src":"https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png",
+                "src":"https://th.bing.com/th/id/R.25cc525a748e93a706ed5bbf51ae4bfa?rik=jm1nojUYvc1GOg&riu=http%3a%2f%2fimg1.exportersindia.com%2fproduct_images%2fbc-full%2fdir_93%2f2769420%2fhousehold-baskets-basins-mugs-dust-pan-waste-paper-987929.jpg&ehk=iXSXkgAviE7KWwR8ANKzn4GwWA5Grcwfjti6IRwJzug%3d&risl=&pid=ImgRaw&r=0",
                 "alt":"Shape"
             },
             "bestseller":false,
@@ -58,7 +71,7 @@
             "price":101,
             "currency":"USD",
             "image":{
-                "src":"https://th.bing.com/th/id/R.0552978df629ebb180f3e128595f5214?rik=mC9g4HIXnllMhQ&riu=http%3a%2f%2fgetwallpapers.com%2fwallpaper%2ffull%2fc%2f1%2fe%2f948280-dark-cloud-wallpaper-2560x1600-tablet.jpg&ehk=6Gu26W7HihDy8NtHNTvIjiXn3CxEUAKeqqM1OXGB4sU%3d&risl=&pid=ImgRaw&r=0",
+                "src":"https://campaignforaccuracyinpublichealthresearch.com/wp-content/uploads/2016/11/steel.jpeg",
                 "alt":"Recycled Plastic"
             },
             "bestseller":false,
@@ -82,6 +95,21 @@
                     }
                 ]
             }
+        },
+        {
+            "name":"Product 4",
+            "category":"plastic",
+            "price":101,
+            "currency":"USD",
+            "image":{
+                "src":"https://th.bing.com/th/id/R.0552978df629ebb180f3e128595f5214?rik=mC9g4HIXnllMhQ&riu=http%3a%2f%2fgetwallpapers.com%2fwallpaper%2ffull%2fc%2f1%2fe%2f948280-dark-cloud-wallpaper-2560x1600-tablet.jpg&ehk=6Gu26W7HihDy8NtHNTvIjiXn3CxEUAKeqqM1OXGB4sU%3d&risl=&pid=ImgRaw&r=0",
+                "alt":"Product 4"
+            },
+            "bestseller":false,
+            "featured":false,
+            "details":null
         }
+
+      
     ]
 }
