@@ -10,7 +10,7 @@ function Product(props: IProps ) {
     console.log("clicked");
   }
   return (
-    <div className="col-lg-4 col-sm-12">
+    <div className="col-lg-3 col-sm-12">
       <Card className="w-100">
         <Card.Img variant="top" src={product.image.src} />
         <Card.Body>

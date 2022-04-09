@@ -15,5 +15,5 @@ export interface IProduct{
         weight:number;
         thickness:number;
         recommendations?:IImage[];
-    }
+    }|null;
 }

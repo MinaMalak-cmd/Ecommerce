@@ -145,10 +145,10 @@
   display: flex;
 }
 .product-list__items__filter-settings{
-  width: 33%;
+  width: 30%;
 }
 .product-list__items__products{
-  width: 67%;
+  width: 70%;
 }
 @media only screen and (max-width: 900px) {
   .main-section__button {

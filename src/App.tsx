@@ -130,11 +130,10 @@ function App() {
         <div className="product-list__items">
           <div className="product-list__items__filter-settings">hi</div>
           <div className="product-list__items__products">
-            <div className="d-flex">
+            <div className="d-flex flex-wrap justify-content-between">
               {products.map((item,index) => {
                 return (
                   <Product product={item} key={index}/>
-                  
                 );
               })}
             </div>
