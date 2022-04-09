@@ -108,8 +108,73 @@
             "bestseller":false,
             "featured":false,
             "details":null
+        },
+       
+        {
+            "name":"Product 4",
+            "category":"brick",
+            "price":150,
+            "currency":"USD",
+            "image":{
+                "src":"https://th.bing.com/th/id/OIP.vteG8wPAGJ7qUkN4pLgsYAHaE0?pid=ImgDet&rs=1",
+                "alt":"Product 4"
+            },
+            "bestseller":false,
+            "featured":false,
+            "details":null
+        },
+        {
+            "name":"Product 5",
+            "category":"copper",
+            "price":250,
+            "currency":"USD",
+            "image":{
+                "src":"https://th.bing.com/th/id/R.a863574bd454ab9fcf62baa5ca38248a?rik=%2fA9qBOfJ3cWqpg&riu=http%3a%2f%2fwww.theshelbyreport.com%2fwp-content%2fuploads%2f2016%2f02%2fPOY-group-shot-765x510.jpg&ehk=WCDhHCkuevF1SnTOMLq8nHm2BzpyMlM4T32B8pW9LjI%3d&risl=&pid=ImgRaw&r=0",
+                "alt":"Product 5"
+            },
+            "bestseller":false,
+            "featured":false,
+            "details":null
+        },
+        {
+            "name":"Product 6",
+            "category":"copper",
+            "price":10,
+            "currency":"USD",
+            "image":{
+                "src":"https://www.southernsavers.com/wp-content/uploads/2018/01/clinique-products.jpg",
+                "alt":"Product 6"
+            },
+            "bestseller":false,
+            "featured":false,
+            "details":null
+        },
+        {
+            "name":"Product 7",
+            "category":"Concrete",
+            "price":110,
+            "currency":"USD",
+            "image":{
+                "src":"https://www.nuventra.com/wp-content/uploads/2017/09/iStock-470874602.jpg",
+                "alt":"Product 7"
+            },
+            "bestseller":false,
+            "featured":false,
+            "details":null
+        },
+        {
+            "name":"Product 8",
+            "category":"Concrete",
+            "price":160,
+            "currency":"USD",
+            "image":{
+                "src":"https://www.1life.co.za/globalassets/blog/new-blog-images/save-cleaning-products.jpg",
+                "alt":"Product 8"
+            },
+            "bestseller":false,
+            "featured":false,
+            "details":null
         }
-
       
     ]
 }
