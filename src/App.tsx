@@ -1,7 +1,16 @@
 import "./App.css";
-import { Navbar, Nav, Badge, Button, Card } from "react-bootstrap";
+import {
+  Navbar,
+  Nav,
+  Badge,
+  Button,
+  DropdownButton,
+  Dropdown,
+} from "react-bootstrap";
 import img from "./assets/img.svg";
 import cart from "./assets/cart.svg";
+import filterImg from "./assets/filterSettings.svg";
+import updown from "./assets/updown.svg";
 import data from "./data/db.json";
 import { IProduct } from "./Interface/IProduct";
 function App() {
@@ -9,6 +18,9 @@ function App() {
   const featuredProduct = products.filter(
     (product) => product.featured === true
   )[0] as IProduct;
+  function clickHandler() {
+    console.log("clicked");
+  }
   return (
     <div className="container container-fluid py-3">
       {/* NavBar  */}
@@ -60,7 +72,7 @@ function App() {
               </div>
             ))}
           </div>
-          <div className="product-detail__material__details__heading">
+          <div className="product-detail__material__details ">
             <h3 className="product-detail__material__details__heading">
               Details
             </h3>
@@ -68,6 +80,14 @@ function App() {
               Weight : {featuredProduct?.details?.weight} g/m2
               <br />
               Thickness : {featuredProduct?.details?.thickness} cm
+            </div>
+            <div className="product-detail__material__details__filter-img">
+              <img
+                src={filterImg}
+                alt="filter"
+                width="30"
+                onClick={clickHandler}
+              />
             </div>
           </div>
         </div>
@@ -79,6 +99,49 @@ function App() {
           <p className="product-detail__desc">
             {featuredProduct?.details?.description}
           </p>
+        </div>
+      </section>
+      <hr />
+      {/* Product list */}
+      <section className="mt-5 product-list">
+        <div className="row justify-content-between ">
+          <div className="col-lg-5">
+            <p className="product-list__header">
+              Materials/
+              <span className="product-list__header__prem">Premium photos</span>
+            </p>
+          </div>
+          <div className="col-lg-3 product-list__sort">
+            <button className="btn btn-transparent product-list__sort-direction-button py-0">
+              <img src={updown} alt="sort-direction" />
+              Sort By
+            </button>
+            <DropdownButton
+              id="dropdown-basic-button"
+              title="Price"
+              variant="transparent"
+            >
+              <Dropdown.Item href="#/action-1">Alpabetically</Dropdown.Item>
+            </DropdownButton>
+          </div>
+        </div>
+        <div className="product-list__items">
+          <div className="product-list__items__filter-settings">hi</div>
+          <div className="product-list__items__products">
+            <div className="d-flex">
+              {products.map((item,index) => {
+                console.log(item.image.src);
+                return (
+                  <div className="" key={index}>
+                    <img
+                      src={item.image.src}
+                      alt={item.image.alt}
+                      className="product-detail__material__image" />
+                  </div>
+                );
+              })}
+            </div>
+          </div>
         </div>
       </section>
     </div>

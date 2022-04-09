@@ -18,7 +18,10 @@
             "category":"steel",
             "price":93.89,
             "currency":"USD",
-            "image":"https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png",
+            "image":{
+                "src":"https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png",
+                "alt":"product2"
+            },
             "bestseller":false,
             "featured":false,
             "details":null
