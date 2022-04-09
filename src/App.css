@@ -225,7 +225,6 @@
   .main-section__button {
     width: 96%;
   }
-
   .main-section div:nth-child(2) {
     margin-bottom: 50px;
   }
@@ -233,22 +232,32 @@
   .product-detail {
     flex-direction: column-reverse;
   }
-
   .product-detail__material__details__filter-img {
     display: flex;
     max-width: 50%;
     justify-content: end;
   }
-
   .product-list__sort {
     display: none;
   }
-
   .product-list__items {
     display: block;
   }
-
+  .product-list__header {
+    text-align: center;
+  }
   .product-list__items__filter-settings {
     display: none;
+    width: 0%;
+  }
+  .product-list__items__products__container__product {
+    max-width: 100%;
+    width: 363px;
+    height: 485px;
+    margin: auto;
+    margin-bottom: 120px;
+  }
+  .product-list__items__products {
+    width: 100%;
   }
 }
