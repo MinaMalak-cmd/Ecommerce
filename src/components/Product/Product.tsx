@@ -29,6 +29,11 @@ function Product(props: IProps) {
             Add to cart
           </button>
         )}
+        {product.bestseller && (
+          <span className="product-list__items__products__container__product__bestseller-tag">
+            Best seller
+          </span>
+        )}
       </div>
     </>
   );
