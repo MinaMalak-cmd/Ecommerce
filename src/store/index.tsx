@@ -36,7 +36,9 @@ const cartSlice = createSlice({
     reducers: {
       addToCart: (state:any, action) => {
         state.cart.push(action.payload);
-        localStorage.setItem('cart', JSON.stringify([state.cart]));
+        let currentCart = JSON.parse(localStorage.getItem("cart"));
+        currentCart.push(action.payload);
+        localStorage.setItem('cart', JSON.stringify(currentCart));
       },
       removeFromCart: (state:any, action) => {
         state.cart = [];
