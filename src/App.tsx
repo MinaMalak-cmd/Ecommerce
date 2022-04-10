@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import "./App.css";
 import {
   Navbar,
@@ -6,31 +7,43 @@ import {
   Button,
   DropdownButton,
   Dropdown,
+  Modal,
 } from "react-bootstrap";
 import img from "./assets/img.svg";
 import cart from "./assets/cart.svg";
 import filterImg from "./assets/filterSettings.svg";
 import updown from "./assets/updown.svg";
-// import data from "./data/db.json";
 import { IProduct } from "./Interface/IProduct";
 import Product from "./components/Product/Product";
-import { useSelector, useDispatch } from 'react-redux';
-import { productActions,cartActions } from './store/index';
+import { useSelector, useDispatch } from "react-redux";
+import { productActions, cartActions } from "./store/index";
 
 function App() {
   // const products = data.products;
-  const products = useSelector((state:any) => state.product);
+  const products = useSelector((state: any) => state.product);
   const featuredProduct = products.filter(
     (product) => product.featured === true
   )[0] as IProduct;
   function clickHandler() {
     console.log("clicked");
   }
-  function dispatchCart(product:IProduct) {
+  function dispatchCart(product: IProduct) {
     dispatch(cartActions.addToCart(product));
+    setCartShow(true);
+    // handleShow();
+  }
+  function removeItemsFromCart(){
+    dispatch(cartActions.removeFromCart());
+    setCartShow(false);
+  }
+  function openModal() {
+    setCartShow(true);
   }
   const dispatch = useDispatch();
-  const cartItems = useSelector((state:any) => state.cart.cart);
+  const cartItems = useSelector((state: any) => state.cart.cart);
+  const [cartShow, setCartShow] = useState(false);
+  const handleClose = () => setCartShow(false);
+  const handleShow = () => setCartShow(true);
   return (
     <div className="container container-fluid py-3">
       {/* NavBar  */}
@@ -40,7 +53,31 @@ function App() {
             <img src={img} width="220" height="auto" />
           </Navbar.Brand>
           <Nav className="nav-item">
-            <img src={cart} width="54" height="auto" alt="cart" />
+            <img src={cart} width="54" height="auto" alt="cart" onClick={()=>openModal()} />
+            <Modal show={cartShow} onHide={handleClose}>
+              <Modal.Header closeButton>
+              </Modal.Header>
+              <Modal.Body>
+                <div className="col-sm-11 m-auto">
+                  {cartItems.map((el,index)=>{
+                    return <div className="row mb-1" key={index}>
+                      <div className="col-sm-6">
+                        <h3>{el.name}</h3>
+                        <span>$ {el.price}</span>
+                      </div>
+                      <div className="col-sm-6">
+                        <img src={el?.image?.src} width="168" height="92" alt={el?.image?.alt} />
+                      </div>
+                    </div>
+                  })}
+                </div>
+              </Modal.Body>
+              <Modal.Footer>
+                <button className="btn btn-transparent" onClick={removeItemsFromCart}>
+                  Clear
+                </button>
+              </Modal.Footer>
+            </Modal>
             <Badge bg="black" text="white" className="nav-item__badge">
               {cartItems?.length}
             </Badge>
@@ -54,7 +91,11 @@ function App() {
           <p className="main-section__header">{featuredProduct.name}</p>
         </div>
         <div className="col-lg-3 col-sm-12">
-          <Button variant="dark" className="main-section__button" onClick={()=>dispatchCart(featuredProduct)}>
+          <Button
+            variant="dark"
+            className="main-section__button"
+            onClick={() => dispatchCart(featuredProduct)}
+          >
             Add to cart
           </Button>
         </div>
@@ -139,10 +180,8 @@ function App() {
           <div className="product-list__items__filter-settings">hi</div>
           <div className="product-list__items__products">
             <div className="product-list__items__products__container">
-              {products.map((item,index) => {
-                return (
-                  <Product product={item} key={index}/>
-                );
+              {products.map((item, index) => {
+                return <Product product={item} key={index} />;
               })}
             </div>
           </div>
