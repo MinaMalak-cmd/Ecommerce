@@ -37,7 +37,9 @@ function App() {
     setCartShow(false);
   }
   function openModal() {
-    setCartShow(true);
+    if(cartItems?.length > 0){
+      setCartShow(true);
+    }
   }
   const dispatch = useDispatch();
   const cartItems = useSelector((state: any) => state.cart.cart);
@@ -73,7 +75,7 @@ function App() {
                 </div>
               </Modal.Body>
               <Modal.Footer>
-                <button className="btn btn-transparent" onClick={removeItemsFromCart}>
+                <button className="btn btn-dark w-100 text-center" onClick={removeItemsFromCart}>
                   Clear
                 </button>
               </Modal.Footer>
