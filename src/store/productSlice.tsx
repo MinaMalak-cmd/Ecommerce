@@ -10,8 +10,7 @@ const productSlice = createSlice({
     reducers: {
       getProductByFilter: (state:any, action) => {
         const { category, priceRange } = action.payload;
-        let currentProducts = {...state};
-        currentProducts = currentProducts.filter((product) => {
+        let currentProducts = tempProducts.filter((product) => {
           if (category === product.category && (priceRange.min <= product.price &&
             product.price <= priceRange.max)) {
                  return product;
@@ -22,9 +21,9 @@ const productSlice = createSlice({
       sortProducts: (state:any, { payload: { sortName } }) => {
         const productsCopy = {...state};
         if (sortName === "price") {
-          state.products = productsCopy.sort((a:IProduct, b:IProduct) => a.price - b.price);
+          state.products = productsCopy.sort((a:any, b:any) => a.price - b.price);
         } else {
-          state.products = productsCopy.sort((a:IProduct, b:IProduct) => a.name.localeCompare(b.name));
+          state.products = productsCopy.sort((a:any, b:any) => a.name-b.name);
         }
       },
     },
