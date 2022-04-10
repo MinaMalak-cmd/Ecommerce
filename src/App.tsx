@@ -43,6 +43,12 @@ function App() {
   function SortByCategory(category: string) {
     dispatch(productActions.sortProducts({sortName:category,direction:sortDirection}));
   }
+  function sortByDirectionHandler() {
+    let category =  (document.getElementById("sortByCategory")as HTMLInputElement).value;
+    let tempSortDirection = sortDirection==="asc"?"desc":"asc";
+    setSortDirection(tempSortDirection)
+    dispatch(productActions.sortProducts({sortName:category,direction:tempSortDirection}));
+  }
   const dispatch = useDispatch();
   const cartItems = useSelector((state: any) => state.cart.cart);
   const [cartShow, setCartShow] = useState(false);
@@ -189,11 +195,11 @@ function App() {
             </p>
           </div>
           <div className="col-lg-3 product-list__sort">
-            <button className="btn btn-transparent product-list__sort-direction-button py-0" onClick={()=>setSortDirection(sortDirection==="asc"?"desc":"asc")}>
+            <button className="btn btn-transparent product-list__sort-direction-button py-0" onClick={()=>sortByDirectionHandler()}>
               <img src={updown} alt="sort-direction" />
               Sort By
             </button>
-            <select id="sortBy" onChange={(e)=>SortByCategory(e.target.value)}>
+            <select id="sortByCategory" onChange={(e)=>SortByCategory(e.target.value)}>
                 <option value="price">price</option>
                 <option value="alphabetically">alphabetically</option>
             </select>
