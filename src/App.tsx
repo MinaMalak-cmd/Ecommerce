@@ -1,14 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useRef,useLayoutEffect } from "react";
 import "./App.css";
 import {
   Navbar,
   Nav,
   Badge,
   Button,
-  DropdownButton,
-  Dropdown,
   Modal,
-  Pagination,PageItem
 } from "react-bootstrap";
 import img from "./assets/img.svg";
 import cart from "./assets/cart.svg";
@@ -20,6 +17,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { productActions, cartActions } from "./store/index";
 
 function App() {
+  const firstRender = useRef(true);
   const products = useSelector((state: any) => state.product.product);
   const featuredProduct = products.filter(
     (product) => product.featured === true
@@ -55,12 +53,13 @@ function App() {
   const handleClose = () => setCartShow(false);
   const handleShow = () => setCartShow(true);
   const [sortDirection, setSortDirection] = useState("asc");
-  useEffect(() => {
-    if (cartItems?.length > 0) {
+  useLayoutEffect(() => {
+    if (firstRender.current) {
+      firstRender.current = false;
+    } else if(!firstRender.current &&cartItems?.length > 0){
       setCartShow(true);
     }
   }, [cartItems]);
-
   return (
     <div className="container container-fluid py-3">
       {/* NavBar  */}
