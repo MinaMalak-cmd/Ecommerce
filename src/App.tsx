@@ -11,14 +11,15 @@ import img from "./assets/img.svg";
 import cart from "./assets/cart.svg";
 import filterImg from "./assets/filterSettings.svg";
 import updown from "./assets/updown.svg";
-import data from "./data/db.json";
+// import data from "./data/db.json";
 import { IProduct } from "./Interface/IProduct";
 import Product from "./components/Product/Product";
 import { useSelector, useDispatch } from 'react-redux';
 import { productActions,cartActions } from './store/index';
 
 function App() {
-  const products = data.products;
+  // const products = data.products;
+  const products = useSelector((state:any) => state.product);
   const featuredProduct = products.filter(
     (product) => product.featured === true
   )[0] as IProduct;
@@ -29,8 +30,7 @@ function App() {
     dispatch(cartActions.addToCart(product));
   }
   const dispatch = useDispatch();
-  const cartItems = useSelector((state:any) => state.cart);
-  const product = useSelector((state:any) => state.product);
+  const cartItems = useSelector((state:any) => state.cart.cart);
   return (
     <div className="container container-fluid py-3">
       {/* NavBar  */}

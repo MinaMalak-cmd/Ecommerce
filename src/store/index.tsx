@@ -29,16 +29,13 @@ const productSlice = createSlice({
     },
   });
 
-const cartInitialState = localStorage.getItem("cart") ? JSON.parse(localStorage.getItem("cart")) : [];
+const cartInitialState = {cart:localStorage.getItem("cart") ? JSON.parse(localStorage.getItem("cart")) : []};
 const cartSlice = createSlice({
     name: "cart",
     initialState: cartInitialState,
     reducers: {
       addToCart: (state:any, action) => {
-        let currentProducts = [...cartInitialState];
-        currentProducts.push(action.payload);
-        console.log(currentProducts);
-        state.cart = currentProducts;
+        state.cart.push(action.payload);
         localStorage.setItem('cart', JSON.stringify([state.cart]));
       },
       removeFromCart: (state:any, action) => {
