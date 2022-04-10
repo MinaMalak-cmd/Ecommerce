@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import "./App.css";
 import {
   Navbar,
@@ -46,6 +46,12 @@ function App() {
   const [cartShow, setCartShow] = useState(false);
   const handleClose = () => setCartShow(false);
   const handleShow = () => setCartShow(true);
+  useEffect(() => {
+    if(cartItems?.length > 0){
+      setCartShow(true);
+    }
+  },[cartItems]);
+
   return (
     <div className="container container-fluid py-3">
       {/* NavBar  */}
