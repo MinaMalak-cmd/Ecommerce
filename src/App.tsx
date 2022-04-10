@@ -14,6 +14,8 @@ import updown from "./assets/updown.svg";
 import data from "./data/db.json";
 import { IProduct } from "./Interface/IProduct";
 import Product from "./components/Product/Product";
+import { useSelector, useDispatch } from 'react-redux';
+import { productActions,cartActions } from './store/index';
 
 function App() {
   const products = data.products;
@@ -23,6 +25,14 @@ function App() {
   function clickHandler() {
     console.log("clicked");
   }
+  function dispatchCart(product:IProduct) {
+    dispatch(cartActions.addToCart(product));
+  }
+  const dispatch = useDispatch();
+  const cartItems = useSelector((state:any) => state.cart);
+  const product = useSelector((state:any) => state.product);
+  const slice = useSelector((state:any) => state);
+  console.log(slice)
   return (
     <div className="container container-fluid py-3">
       {/* NavBar  */}
@@ -34,7 +44,7 @@ function App() {
           <Nav className="nav-item">
             <img src={cart} width="54" height="auto" alt="cart" />
             <Badge bg="black" text="white" className="nav-item__badge">
-              9
+              {cartItems?.length}
             </Badge>
           </Nav>
         </div>
@@ -46,7 +56,7 @@ function App() {
           <p className="main-section__header">{featuredProduct.name}</p>
         </div>
         <div className="col-lg-3 col-sm-12">
-          <Button variant="dark" className="main-section__button">
+          <Button variant="dark" className="main-section__button" onClick={()=>dispatchCart(featuredProduct)}>
             Add to cart
           </Button>
         </div>
