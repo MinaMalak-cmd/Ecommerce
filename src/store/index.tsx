@@ -27,10 +27,10 @@ const productSlice = createSlice({
           state.product = productsCopy.sort((a:any, b:any) => b.price - a.price);
         }
         else if (sortName === "alphabetically" && direction === "asc") {
-          state.product = productsCopy.sort((a:any, b:any) => a.name-b.name);
+          state.product = productsCopy.sort((a:any, b:any) => a.name.localeCompare(b.name));
         }
         else {
-          state.product = productsCopy.sort((a:any, b:any) => b.name-a.name);
+          state.product = productsCopy.sort((a:any, b:any) => b.name.localeCompare(a.name));
         }
       },
     },
