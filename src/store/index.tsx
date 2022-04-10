@@ -3,7 +3,7 @@ import {IProduct} from "../Interface/IProduct";
 import data from "../data/db.json";
 
 const tempProducts = data.products;
-const productInitialState = tempProducts;
+const productInitialState = {product:tempProducts};
 const productSlice = createSlice({
     name: "product",
     initialState: productInitialState,
@@ -18,12 +18,19 @@ const productSlice = createSlice({
         });
         state.product = currentProducts;
       },
-      sortProducts: (state:any, { payload: { sortName } }) => {
-        const productsCopy = {...state};
-        if (sortName === "price") {
+      sortProducts: (state:any, { payload: { sortName,direction } }) => {
+        const productsCopy = [...productInitialState.product];
+        if (sortName === "price" && direction === "asc") {
           state.product = productsCopy.sort((a:any, b:any) => a.price - b.price);
-        } else {
+        } 
+        else if (sortName === "price" && direction === "desc") {
+          state.product = productsCopy.sort((a:any, b:any) => b.price - a.price);
+        }
+        else if (sortName === "alphabetically" && direction === "asc") {
           state.product = productsCopy.sort((a:any, b:any) => a.name-b.name);
+        }
+        else {
+          state.product = productsCopy.sort((a:any, b:any) => b.name-a.name);
         }
       },
     },

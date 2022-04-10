@@ -20,8 +20,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { productActions, cartActions } from "./store/index";
 
 function App() {
-  // const products = data.products;
-  const products = useSelector((state: any) => state.product);
+  const products = useSelector((state: any) => state.product.product);
   const featuredProduct = products.filter(
     (product) => product.featured === true
   )[0] as IProduct;
@@ -31,7 +30,6 @@ function App() {
   function dispatchCart(product: IProduct) {
     dispatch(cartActions.addToCart(product));
     setCartShow(true);
-    // handleShow();
   }
   function removeItemsFromCart() {
     dispatch(cartActions.removeFromCart());
@@ -42,11 +40,15 @@ function App() {
       setCartShow(true);
     }
   }
+  function SortByCategory(category: string) {
+    dispatch(productActions.sortProducts({sortName:category,direction:sortDirection}));
+  }
   const dispatch = useDispatch();
   const cartItems = useSelector((state: any) => state.cart.cart);
   const [cartShow, setCartShow] = useState(false);
   const handleClose = () => setCartShow(false);
   const handleShow = () => setCartShow(true);
+  const [sortDirection, setSortDirection] = useState("asc");
   useEffect(() => {
     if (cartItems?.length > 0) {
       setCartShow(true);
@@ -187,17 +189,14 @@ function App() {
             </p>
           </div>
           <div className="col-lg-3 product-list__sort">
-            <button className="btn btn-transparent product-list__sort-direction-button py-0">
+            <button className="btn btn-transparent product-list__sort-direction-button py-0" onClick={()=>setSortDirection(sortDirection==="asc"?"desc":"asc")}>
               <img src={updown} alt="sort-direction" />
               Sort By
             </button>
-            <DropdownButton
-              id="dropdown-basic-button"
-              title="Price"
-              variant="transparent"
-            >
-              <Dropdown.Item href="#/action-1">Alpabetically</Dropdown.Item>
-            </DropdownButton>
+            <select id="sortBy" onChange={(e)=>SortByCategory(e.target.value)}>
+                <option value="price">price</option>
+                <option value="alphabetically">alphabetically</option>
+            </select>
           </div>
         </div>
         <div className="product-list__items">
@@ -209,10 +208,7 @@ function App() {
               })}
             </div>
             <div className="mt-2">
-              <Pagination size="sm">
-                <Pagination.Item key={1} active>1</Pagination.Item>
-                <Pagination.Item key={2}>2</Pagination.Item>
-              </Pagination>
+              {/* Pagination goes here */}
             </div>
           </div>
         </div>
