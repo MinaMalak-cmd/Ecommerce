@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import "./App.css";
 import {
   Navbar,
@@ -8,6 +8,7 @@ import {
   DropdownButton,
   Dropdown,
   Modal,
+  Pagination,PageItem
 } from "react-bootstrap";
 import img from "./assets/img.svg";
 import cart from "./assets/cart.svg";
@@ -32,12 +33,12 @@ function App() {
     setCartShow(true);
     // handleShow();
   }
-  function removeItemsFromCart(){
+  function removeItemsFromCart() {
     dispatch(cartActions.removeFromCart());
     setCartShow(false);
   }
   function openModal() {
-    if(cartItems?.length > 0){
+    if (cartItems?.length > 0) {
       setCartShow(true);
     }
   }
@@ -47,10 +48,10 @@ function App() {
   const handleClose = () => setCartShow(false);
   const handleShow = () => setCartShow(true);
   useEffect(() => {
-    if(cartItems?.length > 0){
+    if (cartItems?.length > 0) {
       setCartShow(true);
     }
-  },[cartItems]);
+  }, [cartItems]);
 
   return (
     <div className="container container-fluid py-3">
@@ -61,27 +62,42 @@ function App() {
             <img src={img} width="220" height="auto" />
           </Navbar.Brand>
           <Nav className="nav-item">
-            <img src={cart} width="54" height="auto" alt="cart" onClick={()=>openModal()} />
+            <img
+              src={cart}
+              width="54"
+              height="auto"
+              alt="cart"
+              onClick={() => openModal()}
+            />
             <Modal show={cartShow} onHide={handleClose}>
-              <Modal.Header closeButton>
-              </Modal.Header>
+              <Modal.Header closeButton></Modal.Header>
               <Modal.Body>
                 <div className="col-sm-11 m-auto">
-                  {cartItems.map((el,index)=>{
-                    return <div className="row mb-1" key={index}>
-                      <div className="col-sm-6">
-                        <h3>{el.name}</h3>
-                        <span>$ {el.price}</span>
+                  {cartItems.map((el, index) => {
+                    return (
+                      <div className="row mb-1" key={index}>
+                        <div className="col-sm-6">
+                          <h3>{el.name}</h3>
+                          <span>$ {el.price}</span>
+                        </div>
+                        <div className="col-sm-6">
+                          <img
+                            src={el?.image?.src}
+                            width="168"
+                            height="92"
+                            alt={el?.image?.alt}
+                          />
+                        </div>
                       </div>
-                      <div className="col-sm-6">
-                        <img src={el?.image?.src} width="168" height="92" alt={el?.image?.alt} />
-                      </div>
-                    </div>
+                    );
                   })}
                 </div>
               </Modal.Body>
               <Modal.Footer>
-                <button className="btn btn-dark w-100 text-center" onClick={removeItemsFromCart}>
+                <button
+                  className="btn btn-dark w-100 text-center"
+                  onClick={removeItemsFromCart}
+                >
                   Clear
                 </button>
               </Modal.Footer>
@@ -191,6 +207,12 @@ function App() {
               {products.map((item, index) => {
                 return <Product product={item} key={index} />;
               })}
+            </div>
+            <div className="mt-2">
+              <Pagination size="sm">
+                <Pagination.Item key={1} active>1</Pagination.Item>
+                <Pagination.Item key={2}>2</Pagination.Item>
+              </Pagination>
             </div>
           </div>
         </div>

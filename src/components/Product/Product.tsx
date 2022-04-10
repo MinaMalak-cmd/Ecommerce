@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import "../../App.css";
-import { Card } from "react-bootstrap";
 import { IProduct } from "../../Interface/IProduct";
 import { cartActions } from '../../store/index';
 import { useSelector, useDispatch } from 'react-redux';
@@ -19,7 +18,6 @@ function Product(props: IProps) {
   function dispatchCart(product:IProduct) {
     dispatch(cartActions.addToCart(product));
   }
-
   return (
     <>
       <div
