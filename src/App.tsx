@@ -31,8 +31,6 @@ function App() {
   const dispatch = useDispatch();
   const cartItems = useSelector((state:any) => state.cart);
   const product = useSelector((state:any) => state.product);
-  const slice = useSelector((state:any) => state);
-  console.log(slice)
   return (
     <div className="container container-fluid py-3">
       {/* NavBar  */}
