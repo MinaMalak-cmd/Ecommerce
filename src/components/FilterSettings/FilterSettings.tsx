@@ -103,6 +103,7 @@ function FilterSettings() {
                     type="checkbox"
                     id={item}
                     value={item}
+                    name="checkBox"
                     onChange={() => categoryAdder(item)}
                   />
                   <label
