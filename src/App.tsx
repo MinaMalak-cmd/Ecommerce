@@ -22,9 +22,6 @@ import data from "./data/db.json";
 function App() {
   const firstRender = useRef(true);
   let products = useSelector((state: any) => state.product.product);
-  // const featuredProduct = data.products.filter(
-  //   (product) => product.featured === true
-  // )[0] as IProduct;
   products = (useCheckMobile())?products.slice(0,4):products.slice(0,6);
   function clickHandler() {
     console.log("clicked");
@@ -56,6 +53,8 @@ function App() {
   const [cartShow, setCartShow] = useState(false);
   const handleClose = () => setCartShow(false);
   const handleShow = () => setCartShow(true);
+  const [filterSettings, setFilterSettings] = useState(false);
+
   const [sortDirection, setSortDirection] = useState("asc");
   useLayoutEffect(() => {
     if (firstRender.current) {
@@ -172,8 +171,13 @@ function App() {
                 src={filterImg}
                 alt="filter"
                 width="30"
-                onClick={clickHandler}
+                onClick={()=>setFilterSettings(!filterSettings)}
               />
+              {filterSettings && (
+                <div className="product-list__items__filter-settings">
+                  <FilterSettings />
+                </div>
+              )}
             </div>
           </div>
         </div>

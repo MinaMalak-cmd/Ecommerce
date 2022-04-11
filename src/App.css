@@ -229,7 +229,7 @@ product-list__sort-direction-button:active{
 .filter-settings__categories__label{
   padding-left: 10px;
 }
-@media only screen and (max-width: 900px) {
+@media only screen and (max-width: 950px) {
   .main-section__button {
     width: 96%;
   }
