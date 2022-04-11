@@ -168,6 +168,7 @@ product-list__sort-direction-button:active{
   margin: 110px 6px;
   margin-top: 0;
   max-width: 30%;
+  min-width: 234px;
   width: 281px;
   height: 391px;
   position: relative;

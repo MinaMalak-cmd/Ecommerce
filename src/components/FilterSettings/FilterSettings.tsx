@@ -23,11 +23,11 @@ function FilterSettings() {
       setSelectedCategories(tempCategories);
     }
     let priceRange = (selectedPrice.length>0)?{min:selectedPrice[0],max:selectedPrice[1]}:{min:0,max:300}
-    dispatch(productActions.getProductByFilter({categories:tempCategories,priceRange:priceRange}));
+    dispatch(productActions.getProductByFilter({categories:tempCategories.length===0?arrOfCategories:tempCategories,priceRange:priceRange}));
   }
   function priceAdder(price: [number,number]) {
     setSelectedPrice(price);
-    dispatch(productActions.getProductByFilter({categories:selectedCategories,priceRange:{min:price[0],max:price[1]}}));
+    dispatch(productActions.getProductByFilter({categories:selectedCategories.length===0?arrOfCategories:selectedCategories,priceRange:{min:price[0],max:price[1]}}));
   }
   return (
     <>
