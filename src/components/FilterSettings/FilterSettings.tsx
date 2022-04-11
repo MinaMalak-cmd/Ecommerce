@@ -64,6 +64,19 @@ function FilterSettings() {
     radioBtn.checked = false;
     // setModalShow(false);
   }
+  function categoryAdderMobile(category: string) {
+    let tempCategories = [];
+    if (selectedCategories.includes(category)) {
+      tempCategories = selectedCategories.filter((el) => el !== category);
+      setSelectedCategories(tempCategories);
+    } else {
+      tempCategories = [...selectedCategories, category];
+      setSelectedCategories(tempCategories);
+    }
+  }
+  function priceAdderMobile(price: [number, number]) {
+    setSelectedPrice(price);
+  }
   function saveSettings(){
     let priceRange =
     selectedPrice.length > 0
@@ -75,6 +88,7 @@ function FilterSettings() {
           priceRange: priceRange,
         })
       );
+      handleClose();
   }
   return (
     <>
@@ -144,7 +158,7 @@ function FilterSettings() {
                                 type="checkbox"
                                 id={item}
                                 value={item}
-                                onChange={() => categoryAdder(item)}
+                                onChange={() => categoryAdderMobile(item)}
                                 />
                                 <label
                                 htmlFor={item}
@@ -168,7 +182,7 @@ function FilterSettings() {
                                 id={`price${index}`}
                                 value={`price${index}`}
                                 name="radioButton"
-                                onChange={() => priceAdder(item)}
+                                onChange={() => priceAdderMobile(item)}
                                 />
                                 <label
                                 htmlFor={`price${index}`}

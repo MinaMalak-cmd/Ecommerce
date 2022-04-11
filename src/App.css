@@ -266,6 +266,7 @@ product-list__sort-direction-button:active{
     margin-bottom: 120px;
   }
   .product-list__items__products {
-    width: 100%;
+    width: fit-content;
+    margin: auto;
   }
 }
