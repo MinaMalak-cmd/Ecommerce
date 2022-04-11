@@ -9,32 +9,13 @@ const productSlice = createSlice({
     reducers: {
       getProductByFilter: (state:any, action) => {
         const { categories, priceRange } = action.payload;
-        console.log(categories, priceRange);
         let currentProducts =[];
         for(let i=0;i<tempProducts.length;i++){
           let product = tempProducts[i];
-          if ((categories.indexOf(product=>product.category)!==-1) && (product.price >= priceRange.min) &&
-            (product.price <= priceRange.max)) {
-              console.log("yes",product);
-              currentProducts.push(product)
-            }
-            else{
-            console.log({index:i,product:product,categories:categories.indexOf(product.category)!==-1},
-            priceRange.min <= product.price ,
-            product.price <= priceRange.max
-            );
-            console.log("not found");
-            continue;
+          if (categories.indexOf(product.category)!==-1 &&(product.price >= priceRange.min && product.price <= priceRange.max)) {
+            currentProducts.push(product)
           }
-          
         }
-        // let currentProducts = tempProducts.filter((product) => {
-        //   if (categories.indexOf(product=>product.category)!==-1 && (priceRange.min <= product.price &&
-        //     product.price <= priceRange.max)) {
-        //          return product;
-        //   }
-        // });
-        console.log(currentProducts);
         state.product = currentProducts;
       },
       sortProducts: (state:any, { payload: { sortName,direction } }) => {
