@@ -58,6 +58,7 @@ const cartSlice = createSlice({
 const store = configureStore({
   reducer: { product: productSlice.reducer, cart: cartSlice.reducer },
 });
+export const featuredProduct = tempProducts.filter((product) => product.featured === true)[0] as any;
 export const productActions = productSlice.actions;
 export const cartActions = cartSlice.actions;
 export default store;

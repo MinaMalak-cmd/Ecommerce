@@ -139,8 +139,13 @@
   line-height: 24px;
   letter-spacing: 0em;
   color: #9B9B9B;
+  border: none !important;
+  margin-inline-end: 5px;
 }
+product-list__sort-direction-button:active{
+  border: none !important;
 
+}
 .product-list__items {
   margin-top: 10px;
   display: flex;
