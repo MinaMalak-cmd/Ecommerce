@@ -2,12 +2,11 @@ import React, { useState } from "react";
 import "../../App.css";
 import { IProduct } from "../../Interface/IProduct";
 import { useSelector, useDispatch } from "react-redux";
-import { productActions } from "../../store/index";
+import { productActions,categories } from "../../store/index";
 import useCheckMobile from "../../hooks/useCheckMobile";
 
 function FilterSettings() {
   const products = useSelector((state: any) => state.product.product);
-  let categories = new Set(products.map(el=>el.category));
   let arrOfCategories = Array.from(categories)
   const isMobile = useCheckMobile();
   const dispatch = useDispatch();
@@ -24,11 +23,11 @@ function FilterSettings() {
       setSelectedCategories(tempCategories);
     }
     let priceRange = (selectedPrice.length>0)?{min:selectedPrice[0],max:selectedPrice[1]}:{min:0,max:300}
-    dispatch(productActions.getProductByFilter({category:tempCategories,priceRange:priceRange}));
+    dispatch(productActions.getProductByFilter({categories:tempCategories,priceRange:priceRange}));
   }
   function priceAdder(price: [number,number]) {
     setSelectedPrice(price);
-    dispatch(productActions.getProductByFilter({category:selectedCategories,priceRange:{min:price[0],max:price[1]}}));
+    dispatch(productActions.getProductByFilter({categories:selectedCategories,priceRange:{min:price[0],max:price[1]}}));
   }
   return (
     <>

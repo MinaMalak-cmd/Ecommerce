@@ -8,14 +8,32 @@ const productSlice = createSlice({
     initialState: productInitialState,
     reducers: {
       getProductByFilter: (state:any, action) => {
-        const { category, priceRange } = action.payload;
-        console.log(category, priceRange);
-        let currentProducts = tempProducts.filter((product) => {
-          if (category.some(product.category) && (priceRange.min <= product.price &&
-            product.price <= priceRange.max)) {
-                 return product;
+        const { categories, priceRange } = action.payload;
+        console.log(categories, priceRange);
+        let currentProducts =[];
+        for(let i=0;i<tempProducts.length;i++){
+          let product = tempProducts[i];
+          if ((categories.indexOf(product=>product.category)!==-1) && (priceRange.min <= product.price) &&
+            (product.price <= priceRange.max)) {
+              console.log("yes",product);
+              currentProducts.push(product[i])
+            }
+            else{
+            console.log({index:i,product:product,categories:categories.indexOf(product.category)!==-1},
+            priceRange.min <= product.price ,
+            product.price <= priceRange.max
+            );
+            console.log("not found");
+            continue;
           }
-        });
+          
+        }
+        // let currentProducts = tempProducts.filter((product) => {
+        //   if (categories.indexOf(product=>product.category)!==-1 && (priceRange.min <= product.price &&
+        //     product.price <= priceRange.max)) {
+        //          return product;
+        //   }
+        // });
         console.log(currentProducts);
         state.product = currentProducts;
       },
@@ -44,7 +62,6 @@ const cartSlice = createSlice({
     reducers: {
       addToCart: (state:any, action) => {
         state.cart.push(action.payload);
-        // let currentCart = JSON.parse(localStorage.getItem("cart"));
         let currentCart = localStorage.getItem("cart") ? JSON.parse(localStorage.getItem("cart")) as any[] : []
         currentCart.push(action.payload);
         localStorage.setItem('cart', JSON.stringify(currentCart));
@@ -59,6 +76,7 @@ const store = configureStore({
   reducer: { product: productSlice.reducer, cart: cartSlice.reducer },
 });
 export const featuredProduct = tempProducts.filter((product) => product.featured === true)[0] as any;
+export const categories = new Set(tempProducts.map(el=>el.category));
 export const productActions = productSlice.actions;
 export const cartActions = cartSlice.actions;
 export default store;
