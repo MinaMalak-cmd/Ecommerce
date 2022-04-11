@@ -12,6 +12,7 @@ function FilterSettings() {
   const width = useWindowWidth();
   const dispatch = useDispatch();
   const [selectedCategories, setSelectedCategories] = useState([]);
+  const [selectedPrice, setSelectedPrice] = useState([]);
   const priceRange =[[0,20],[20,100],[100,200],[200,300]];
   function categoryAdder(category: string) {
     let tempCategories =[];
@@ -23,9 +24,11 @@ function FilterSettings() {
       setSelectedCategories(tempCategories);
     }
     console.log(tempCategories);
-    dispatch(productActions.getProductByFilter({category:tempCategories}));
+    let priceRange = (selectedPrice!=[])?{min:selectedPrice[0],max:selectedPrice[1]}:{min:0,max:300}
+    dispatch(productActions.getProductByFilter({category:tempCategories,priceRange:priceRange}));
   }
   function priceAdder(price: [number,number]) {
+    setSelectedPrice(price);
     dispatch(productActions.getProductByFilter({category:selectedCategories,priceRange:{min:price[0],max:price[1]}}));
   }
   return (
