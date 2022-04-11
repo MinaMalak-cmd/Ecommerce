@@ -25,6 +25,9 @@ function FilterSettings() {
     console.log(tempCategories);
     dispatch(productActions.getProductByFilter({category:tempCategories}));
   }
+  function priceAdder(price: [number,number]) {
+    dispatch(productActions.getProductByFilter({category:selectedCategories,priceRange:{min:price[0],max:price[1]}}));
+  }
   return (
     <>
         <div>
@@ -40,13 +43,12 @@ function FilterSettings() {
             </div>
             <h3>Price range</h3>
             <div className="col-sm-9">
-                {arrOfCategories.map((item:any,index:number)=>{
+                {priceRange.map((item:any,index:number)=>{
                     return <div key={index} className="mb-2">
-                        <input type="checkbox"  id={item} value={item} onChange={()=>categoryAdder(item)}/>
-                        <label htmlFor={item} className="filter-settings__categories__label"> {item}</label>
+                        <input type="radio"  id={`price${index}`} value={`price${index}`} onChange={()=>priceAdder(item)}/>
+                        <label htmlFor={`price${index}`} className="filter-settings__categories__label"> ${item[0]}-${item[1]}</label>
                     </div>
                 })}
-                <hr />
             </div>
         </div>
     </>

@@ -17,11 +17,12 @@ import { useSelector, useDispatch } from "react-redux";
 import { productActions, cartActions } from "./store/index";
 import useWindowWidth from "./hooks/useWindowWidth";
 import FilterSettings from "./components/FilterSettings/FilterSettings";
+import data from "./data/db.json";
 
 function App() {
   const firstRender = useRef(true);
   let products = useSelector((state: any) => state.product.product);
-  const featuredProduct = products.filter(
+  const featuredProduct = data.products.filter(
     (product) => product.featured === true
   )[0] as IProduct;
   const width = useWindowWidth();
