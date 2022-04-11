@@ -13,10 +13,10 @@ const productSlice = createSlice({
         let currentProducts =[];
         for(let i=0;i<tempProducts.length;i++){
           let product = tempProducts[i];
-          if ((categories.indexOf(product=>product.category)!==-1) && (priceRange.min <= product.price) &&
+          if ((categories.indexOf(product=>product.category)!==-1) && (product.price >= priceRange.min) &&
             (product.price <= priceRange.max)) {
               console.log("yes",product);
-              currentProducts.push(product[i])
+              currentProducts.push(product)
             }
             else{
             console.log({index:i,product:product,categories:categories.indexOf(product.category)!==-1},
