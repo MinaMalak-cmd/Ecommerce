@@ -23,8 +23,7 @@ function FilterSettings() {
       tempCategories = [...selectedCategories, category];
       setSelectedCategories(tempCategories);
     }
-    console.log(tempCategories);
-    let priceRange = (selectedPrice!=[])?{min:selectedPrice[0],max:selectedPrice[1]}:{min:0,max:300}
+    let priceRange = (selectedPrice.length>0)?{min:selectedPrice[0],max:selectedPrice[1]}:{min:0,max:300}
     dispatch(productActions.getProductByFilter({category:tempCategories,priceRange:priceRange}));
   }
   function priceAdder(price: [number,number]) {
@@ -48,7 +47,7 @@ function FilterSettings() {
             <div className="col-sm-9">
                 {priceRange.map((item:any,index:number)=>{
                     return <div key={index} className="mb-2">
-                        <input type="radio"  id={`price${index}`} value={`price${index}`} onChange={()=>priceAdder(item)}/>
+                        <input type="radio"  id={`price${index}`} value={`price${index}`} name="radioButton" onChange={()=>priceAdder(item)}/>
                         <label htmlFor={`price${index}`} className="filter-settings__categories__label"> ${item[0]}-${item[1]}</label>
                     </div>
                 })}

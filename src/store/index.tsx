@@ -9,12 +9,14 @@ const productSlice = createSlice({
     reducers: {
       getProductByFilter: (state:any, action) => {
         const { category, priceRange } = action.payload;
+        console.log(category, priceRange);
         let currentProducts = tempProducts.filter((product) => {
-          if (category === product.category && (priceRange.min <= product.price &&
+          if (category.some(product.category) && (priceRange.min <= product.price &&
             product.price <= priceRange.max)) {
                  return product;
           }
         });
+        console.log(currentProducts);
         state.product = currentProducts;
       },
       sortProducts: (state:any, { payload: { sortName,direction } }) => {
