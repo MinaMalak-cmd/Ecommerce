@@ -1,5 +1,4 @@
 import { createSlice, configureStore} from "@reduxjs/toolkit";
-import {IProduct} from "../Interface/IProduct";
 import data from "../data/db.json";
 
 const tempProducts = data.products;
