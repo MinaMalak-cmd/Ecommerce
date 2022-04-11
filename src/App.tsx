@@ -16,6 +16,7 @@ import Product from "./components/Product/Product";
 import { useSelector, useDispatch } from "react-redux";
 import { productActions, cartActions } from "./store/index";
 import useWindowWidth from "./hooks/useWindowWidth";
+import FilterSettings from "./components/FilterSettings/FilterSettings";
 
 function App() {
   const firstRender = useRef(true);
@@ -208,7 +209,9 @@ function App() {
           </div>
         </div>
         <div className="product-list__items">
-          <div className="product-list__items__filter-settings">hi</div>
+          <div className="product-list__items__filter-settings">
+            <FilterSettings />
+          </div>
           <div className="product-list__items__products">
             <div className="product-list__items__products__container">
               {products.map((item, index) => {

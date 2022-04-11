@@ -220,7 +220,9 @@
   letter-spacing: 0em;
   color: #656565;
 }
-
+.filter-settings__categories__label{
+  padding-left: 10px;
+}
 @media only screen and (max-width: 900px) {
   .main-section__button {
     width: 96%;
