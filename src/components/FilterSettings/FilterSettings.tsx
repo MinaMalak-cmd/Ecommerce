@@ -5,8 +5,11 @@ import { useSelector, useDispatch } from "react-redux";
 import { productActions, categories } from "../../store/index";
 import useCheckMobile from "../../hooks/useCheckMobile";
 import { Modal } from "react-bootstrap";
-function FilterSettings() {
-  const products = useSelector((state: any) => state.product.product);
+interface IProps {
+    isShow?:boolean;
+  }
+function FilterSettings(props: IProps) {
+  let isShow = props.isShow;
   let arrOfCategories = Array.from(categories);
   const isMobile = useCheckMobile();
   const dispatch = useDispatch();
@@ -18,7 +21,7 @@ function FilterSettings() {
     [100, 200],
     [200, 300],
   ];
-  const [modalShow, setModalShow] = useState(true);
+  const [modalShow, setModalShow] = useState(isShow);
   const handleClose = () => setModalShow(false);
   function categoryAdder(category: string) {
     let tempCategories = [];

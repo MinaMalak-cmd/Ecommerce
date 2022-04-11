@@ -175,7 +175,7 @@ function App() {
               />
               {filterSettings && (
                 <div className="product-list__items__filter-settings">
-                  <FilterSettings />
+                  <FilterSettings isShow={filterSettings} />
                 </div>
               )}
             </div>
