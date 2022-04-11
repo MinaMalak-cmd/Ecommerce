@@ -3,13 +3,13 @@ import "../../App.css";
 import { IProduct } from "../../Interface/IProduct";
 import { useSelector, useDispatch } from "react-redux";
 import { productActions } from "../../store/index";
-import useWindowWidth from "../../hooks/useWindowWidth";
+import useCheckMobile from "../../hooks/useCheckMobile";
 
 function FilterSettings() {
   const products = useSelector((state: any) => state.product.product);
   let categories = new Set(products.map(el=>el.category));
   let arrOfCategories = Array.from(categories)
-  const width = useWindowWidth();
+  const isMobile = useCheckMobile();
   const dispatch = useDispatch();
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [selectedPrice, setSelectedPrice] = useState([]);

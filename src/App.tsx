@@ -15,7 +15,7 @@ import { IProduct } from "./Interface/IProduct";
 import Product from "./components/Product/Product";
 import { useSelector, useDispatch } from "react-redux";
 import { productActions, cartActions } from "./store/index";
-import useWindowWidth from "./hooks/useWindowWidth";
+import useCheckMobile from "./hooks/useCheckMobile";
 import FilterSettings from "./components/FilterSettings/FilterSettings";
 import data from "./data/db.json";
 
@@ -25,8 +25,7 @@ function App() {
   const featuredProduct = data.products.filter(
     (product) => product.featured === true
   )[0] as IProduct;
-  const width = useWindowWidth();
-  products = (width<=900)?products.slice(0,4):products.slice(0,6);
+  products = (useCheckMobile())?products.slice(0,4):products.slice(0,6);
   function clickHandler() {
     console.log("clicked");
   }
