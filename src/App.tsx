@@ -7,7 +7,7 @@ import {
   Button,
   Modal,
 } from "react-bootstrap";
-import img from "./assets/img.svg";
+import img from "./assets/img2.svg";
 import cart from "./assets/cart.svg";
 import filterImg from "./assets/filterSettings.svg";
 import updown from "./assets/updown.svg";
@@ -69,7 +69,7 @@ function App() {
       <Navbar bg="transparent" expand={false}>
         <div className="d-flex justify-content-space-between">
           <Navbar.Brand href="#">
-            <img src={img} width="220" height="auto" />
+            <img src={img} width="39" height="auto" alt="logo"/>
           </Navbar.Brand>
           <Nav className="nav-item">
             <img
