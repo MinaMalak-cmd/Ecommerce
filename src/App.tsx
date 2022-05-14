@@ -1,11 +1,11 @@
-import React, { useState, useRef,useLayoutEffect } from "react";
+import React, { useState, useRef, useLayoutEffect } from "react";
 import "./App.css";
 import filterImg from "./assets/filterSettings.svg";
 import updown from "./assets/updown.svg";
 import { IProduct } from "./Interface/IProduct";
 import Product from "./components/Product/Product";
 import { useSelector, useDispatch } from "react-redux";
-import { productActions, cartActions,featuredProduct } from "./store/index";
+import { productActions, cartActions, featuredProduct } from "./store/index";
 import useCheckMobile from "./hooks/useCheckMobile";
 import FilterSettings from "./components/FilterSettings/FilterSettings";
 import NavBar from "./components/NavBar/NavBar";
@@ -21,7 +21,7 @@ function App() {
   const [filterSettings, setFilterSettings] = useState(false);
   const [sortDirection, setSortDirection] = useState("asc");
   let products = useSelector((state: any) => state.product.product);
-  products = (useCheckMobile())?products.slice(0,4):products.slice(0,6);
+  products = useCheckMobile() ? products.slice(0, 4) : products.slice(0, 6);
 
   function dispatchCart(product: IProduct) {
     dispatch(cartActions.addToCart(product));
@@ -32,13 +32,25 @@ function App() {
     handleClose();
   }
   function SortByCategory(category: string) {
-    dispatch(productActions.sortProducts({sortName:category,direction:sortDirection}));
+    dispatch(
+      productActions.sortProducts({
+        sortName: category,
+        direction: sortDirection,
+      })
+    );
   }
   function sortByDirectionHandler() {
-    let category =  (document.getElementById("sortByCategory")as HTMLInputElement).value;
-    let tempSortDirection = sortDirection==="asc"?"desc":"asc";
-    setSortDirection(tempSortDirection)
-    dispatch(productActions.sortProducts({sortName:category,direction:tempSortDirection}));
+    let category = (
+      document.getElementById("sortByCategory") as HTMLInputElement
+    ).value;
+    let tempSortDirection = sortDirection === "asc" ? "desc" : "asc";
+    setSortDirection(tempSortDirection);
+    dispatch(
+      productActions.sortProducts({
+        sortName: category,
+        direction: tempSortDirection,
+      })
+    );
   }
   function addFeaturedProductToCart() {
     dispatchCart(featuredProduct);
@@ -46,7 +58,7 @@ function App() {
   useLayoutEffect(() => {
     if (firstRender.current) {
       firstRender.current = false;
-    } else if(!firstRender.current &&cartItems?.length > 0){
+    } else if (!firstRender.current && cartItems?.length > 0) {
       handleShow();
     }
   }, [cartItems]);
@@ -54,8 +66,8 @@ function App() {
   return (
     <div className="container container-fluid py-3">
       {/* NavBar  */}
-      <NavBar 
-        cartItems={cartItems} 
+      <NavBar
+        cartItems={cartItems}
         onShowModal={handleShow}
         onHideModal={handleClose}
         onRemoveItemsFromCart={removeItemsFromCart}
@@ -63,7 +75,10 @@ function App() {
       />
 
       {/* Featured product */}
-      <FeaturedProduct featuredProduct={featuredProduct} onAddFeaturedProductToCart={addFeaturedProductToCart}/>
+      <FeaturedProduct
+        featuredProduct={featuredProduct}
+        onAddFeaturedProductToCart={addFeaturedProductToCart}
+      />
 
       {/* Product details */}
       <section className="row mt-5 product-detail">
@@ -96,7 +111,7 @@ function App() {
                 src={filterImg}
                 alt="filter"
                 width="30"
-                onClick={()=>setFilterSettings(!filterSettings)}
+                onClick={() => setFilterSettings(!filterSettings)}
               />
               {filterSettings && (
                 <div className="product-list__items__filter-settings">
@@ -117,6 +132,7 @@ function App() {
         </div>
       </section>
       <hr />
+
       {/* Product list */}
       <section className="mt-5 product-list">
         <div className="row justify-content-between ">
@@ -127,13 +143,19 @@ function App() {
             </p>
           </div>
           <div className="col-lg-3 product-list__sort">
-            <button className="btn btn-transparent product-list__sort-direction-button py-0" onClick={()=>sortByDirectionHandler()}>
+            <button
+              className="btn btn-transparent product-list__sort-direction-button py-0"
+              onClick={() => sortByDirectionHandler()}
+            >
               <img src={updown} alt="sort-direction" />
               Sort By
             </button>
-            <select id="sortByCategory" onChange={(e)=>SortByCategory(e.target.value)}>
-                <option value="price">price</option>
-                <option value="alphabetically">alphabetically</option>
+            <select
+              id="sortByCategory"
+              onChange={(e) => SortByCategory(e.target.value)}
+            >
+              <option value="price">price</option>
+              <option value="alphabetically">alphabetically</option>
             </select>
           </div>
         </div>
@@ -147,9 +169,7 @@ function App() {
                 return <Product product={item} key={index} />;
               })}
             </div>
-            <div className="mt-2">
-              {/* Pagination goes here */}
-            </div>
+            <div className="mt-2">{/* Pagination goes here */}</div>
           </div>
         </div>
       </section>

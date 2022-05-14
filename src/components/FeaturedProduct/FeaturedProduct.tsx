@@ -1,11 +1,11 @@
 import React from "react";
 import {Button} from "react-bootstrap";
 
-
 function FeaturedProduct({featuredProduct,onAddFeaturedProductToCart}) {
   function addToCart(){
     onAddFeaturedProductToCart();
   }
+  
   return (
     <div>
       <section className="main-section row justify-content-space-between d-flex pos-relative">
