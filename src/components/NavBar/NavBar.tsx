@@ -35,7 +35,8 @@ function NavBar({
               width="54"
               height="auto"
               alt="cart"
-              onClick={() => openModal()}
+              style={{cursor:(cartItems?.length > 0)&&'pointer'}}
+              onClick={openModal}
             />
             <Modal show={cartShow} onHide={handleClose}>
               <Modal.Header closeButton></Modal.Header>

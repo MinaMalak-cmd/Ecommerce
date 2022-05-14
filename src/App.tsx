@@ -1,6 +1,5 @@
 import React, { useState, useRef,useLayoutEffect } from "react";
 import "./App.css";
-import {Button} from "react-bootstrap";
 import filterImg from "./assets/filterSettings.svg";
 import updown from "./assets/updown.svg";
 import { IProduct } from "./Interface/IProduct";
@@ -10,6 +9,7 @@ import { productActions, cartActions,featuredProduct } from "./store/index";
 import useCheckMobile from "./hooks/useCheckMobile";
 import FilterSettings from "./components/FilterSettings/FilterSettings";
 import NavBar from "./components/NavBar/NavBar";
+import FeaturedProduct from "./components/FeaturedProduct/FeaturedProduct";
 
 function App() {
   const firstRender = useRef(true);
@@ -40,6 +40,9 @@ function App() {
     setSortDirection(tempSortDirection)
     dispatch(productActions.sortProducts({sortName:category,direction:tempSortDirection}));
   }
+  function addFeaturedProductToCart() {
+    dispatchCart(featuredProduct);
+  }
   useLayoutEffect(() => {
     if (firstRender.current) {
       firstRender.current = false;
@@ -59,28 +62,9 @@ function App() {
         cartShow={cartShow}
       />
 
-      {/* Main section */}
-      <section className="main-section row justify-content-space-between d-flex pos-relative">
-        <div className="col-lg-5">
-          <p className="main-section__header">{featuredProduct.name}</p>
-        </div>
-        <div className="col-lg-3 col-sm-12">
-          <Button
-            variant="dark"
-            className="main-section__button"
-            onClick={() => dispatchCart(featuredProduct)}
-          >
-            Add to cart
-          </Button>
-        </div>
-        <div className="col-lg-12 main-section__img-container">
-          <span className="main-section__img-container__description">
-            Featured
-          </span>
-          <img src={featuredProduct.image.src} alt="product" width="100%" />
-        </div>
-      </section>
-      
+      {/* Featured product */}
+      <FeaturedProduct featuredProduct={featuredProduct} onAddFeaturedProductToCart={addFeaturedProductToCart}/>
+
       {/* Product details */}
       <section className="row mt-5 product-detail">
         <div className="col-lg-6">

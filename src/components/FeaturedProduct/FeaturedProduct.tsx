@@ -1,82 +1,33 @@
 import React from "react";
-import { Navbar, Nav, Badge, Modal } from "react-bootstrap";
-import img from "../../assets/img2.svg";
-import cart from "../../assets/cart.svg";
-import { IProduct } from "../../Interface/IProduct";
+import {Button} from "react-bootstrap";
 
-function FeaturedProduct({
-  cartItems,
-  onShowModal,
-  onHideModal,
-  cartShow,
-  onRemoveItemsFromCart,
-}) {
-  function openModal() {
-    if (cartItems?.length > 0) {
-      onShowModal();
-    }
-  }
-  function handleClose() {
-    onHideModal();
-  }
-  function removeItemsFromCart() {
-    onRemoveItemsFromCart();
+
+function FeaturedProduct({featuredProduct,onAddFeaturedProductToCart}) {
+  function addToCart(){
+    onAddFeaturedProductToCart();
   }
   return (
     <div>
-      <Navbar bg="transparent" expand={false}>
-        <div className="d-flex justify-content-space-between">
-          <Navbar.Brand href="#">
-            <img src={img} width="39" height="auto" alt="logo" />
-          </Navbar.Brand>
-          <Nav className="nav-item">
-            <img
-              src={cart}
-              width="54"
-              height="auto"
-              alt="cart"
-              onClick={() => openModal()}
-            />
-            <Modal show={cartShow} onHide={handleClose}>
-              <Modal.Header closeButton></Modal.Header>
-              <Modal.Body>
-                <div className="col-sm-11 m-auto">
-                  {cartItems.map((el: IProduct, index: number) => {
-                    return (
-                      <div className="row mb-1" key={index}>
-                        <div className="col-sm-6">
-                          <h3>{el.name}</h3>
-                          <span>$ {el.price}</span>
-                        </div>
-                        <div className="col-sm-6">
-                          <img
-                            src={el?.image?.src}
-                            width="168"
-                            height="92"
-                            alt={el?.image?.alt}
-                          />
-                        </div>
-                      </div>
-                    );
-                  })}
-                </div>
-              </Modal.Body>
-              <Modal.Footer>
-                <button
-                  className="btn btn-dark w-100 text-center"
-                  onClick={removeItemsFromCart}
-                >
-                  Clear
-                </button>
-              </Modal.Footer>
-            </Modal>
-            <Badge bg="black" text="white" className="nav-item__badge">
-              {cartItems?.length}
-            </Badge>
-          </Nav>
+      <section className="main-section row justify-content-space-between d-flex pos-relative">
+        <div className="col-lg-5">
+          <p className="main-section__header">{featuredProduct.name}</p>
         </div>
-      </Navbar>
-      <hr />
+        <div className="col-lg-3 col-sm-12">
+          <Button
+            variant="dark"
+            className="main-section__button"
+            onClick={addToCart}
+          >
+            Add to cart
+          </Button>
+        </div>
+        <div className="col-lg-12 main-section__img-container">
+          <span className="main-section__img-container__description">
+            Featured
+          </span>
+          <img src={featuredProduct.image.src} alt="product" width="100%" />
+        </div>
+      </section>
     </div>
   );
 }
