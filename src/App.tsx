@@ -1,14 +1,6 @@
 import React, { useState, useRef,useLayoutEffect } from "react";
 import "./App.css";
-import {
-  Navbar,
-  Nav,
-  Badge,
-  Button,
-  Modal,
-} from "react-bootstrap";
-import img from "./assets/img2.svg";
-import cart from "./assets/cart.svg";
+import {Button} from "react-bootstrap";
 import filterImg from "./assets/filterSettings.svg";
 import updown from "./assets/updown.svg";
 import { IProduct } from "./Interface/IProduct";
@@ -17,27 +9,27 @@ import { useSelector, useDispatch } from "react-redux";
 import { productActions, cartActions,featuredProduct } from "./store/index";
 import useCheckMobile from "./hooks/useCheckMobile";
 import FilterSettings from "./components/FilterSettings/FilterSettings";
-import data from "./data/db.json";
+import NavBar from "./components/NavBar/NavBar";
 
 function App() {
   const firstRender = useRef(true);
+  const dispatch = useDispatch();
+  const cartItems = useSelector((state: any) => state.cart.cart);
+  const [cartShow, setCartShow] = useState(false);
+  const handleClose = () => setCartShow(false);
+  const handleShow = () => setCartShow(true);
+  const [filterSettings, setFilterSettings] = useState(false);
+  const [sortDirection, setSortDirection] = useState("asc");
   let products = useSelector((state: any) => state.product.product);
   products = (useCheckMobile())?products.slice(0,4):products.slice(0,6);
-  function clickHandler() {
-    console.log("clicked");
-  }
+
   function dispatchCart(product: IProduct) {
     dispatch(cartActions.addToCart(product));
-    setCartShow(true);
+    handleShow();
   }
   function removeItemsFromCart() {
     dispatch(cartActions.removeFromCart());
-    setCartShow(false);
-  }
-  function openModal() {
-    if (cartItems?.length > 0) {
-      setCartShow(true);
-    }
+    handleClose();
   }
   function SortByCategory(category: string) {
     dispatch(productActions.sortProducts({sortName:category,direction:sortDirection}));
@@ -48,77 +40,25 @@ function App() {
     setSortDirection(tempSortDirection)
     dispatch(productActions.sortProducts({sortName:category,direction:tempSortDirection}));
   }
-  const dispatch = useDispatch();
-  const cartItems = useSelector((state: any) => state.cart.cart);
-  const [cartShow, setCartShow] = useState(false);
-  const handleClose = () => setCartShow(false);
-  const handleShow = () => setCartShow(true);
-  const [filterSettings, setFilterSettings] = useState(false);
-
-  const [sortDirection, setSortDirection] = useState("asc");
   useLayoutEffect(() => {
     if (firstRender.current) {
       firstRender.current = false;
     } else if(!firstRender.current &&cartItems?.length > 0){
-      setCartShow(true);
+      handleShow();
     }
   }, [cartItems]);
+
   return (
     <div className="container container-fluid py-3">
       {/* NavBar  */}
-      <Navbar bg="transparent" expand={false}>
-        <div className="d-flex justify-content-space-between">
-          <Navbar.Brand href="#">
-            <img src={img} width="39" height="auto" alt="logo"/>
-          </Navbar.Brand>
-          <Nav className="nav-item">
-            <img
-              src={cart}
-              width="54"
-              height="auto"
-              alt="cart"
-              onClick={() => openModal()}
-            />
-            <Modal show={cartShow} onHide={handleClose}>
-              <Modal.Header closeButton></Modal.Header>
-              <Modal.Body>
-                <div className="col-sm-11 m-auto">
-                  {cartItems.map((el, index) => {
-                    return (
-                      <div className="row mb-1" key={index}>
-                        <div className="col-sm-6">
-                          <h3>{el.name}</h3>
-                          <span>$ {el.price}</span>
-                        </div>
-                        <div className="col-sm-6">
-                          <img
-                            src={el?.image?.src}
-                            width="168"
-                            height="92"
-                            alt={el?.image?.alt}
-                          />
-                        </div>
-                      </div>
-                    );
-                  })}
-                </div>
-              </Modal.Body>
-              <Modal.Footer>
-                <button
-                  className="btn btn-dark w-100 text-center"
-                  onClick={removeItemsFromCart}
-                >
-                  Clear
-                </button>
-              </Modal.Footer>
-            </Modal>
-            <Badge bg="black" text="white" className="nav-item__badge">
-              {cartItems?.length}
-            </Badge>
-          </Nav>
-        </div>
-      </Navbar>
-      <hr />
+      <NavBar 
+        cartItems={cartItems} 
+        onShowModal={handleShow}
+        onHideModal={handleClose}
+        onRemoveItemsFromCart={removeItemsFromCart}
+        cartShow={cartShow}
+      />
+
       {/* Main section */}
       <section className="main-section row justify-content-space-between d-flex pos-relative">
         <div className="col-lg-5">
@@ -140,6 +80,7 @@ function App() {
           <img src={featuredProduct.image.src} alt="product" width="100%" />
         </div>
       </section>
+      
       {/* Product details */}
       <section className="row mt-5 product-detail">
         <div className="col-lg-6">
