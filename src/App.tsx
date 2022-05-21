@@ -19,7 +19,10 @@ function App() {
   const [filterSettings, setFilterSettings] = useState(false);
   let products = useSelector((state: any) => state.product.product);
   products = useCheckMobile() ? products.slice(0, 4) : products.slice(0, 6);
-
+  console.log("🚀 ~ file: App.tsx ~ line 22 ~ App ~ products", products)
+  // let products2 = dispatch(productActions.paginateProducts({}));
+  // console.log("🚀 ~ file: App.tsx ~ line 23 ~ App ~ products2", products2)
+  
   function dispatchCart(product: IProduct) {
     dispatch(cartActions.addToCart(product));
     handleShow();

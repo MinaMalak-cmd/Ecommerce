@@ -13,15 +13,15 @@ function Pagination() {
   return (
     <div className="mt-3 text-center col-12 m-auto w-25">
       <BPagination>
-        <BPagination.First />
-        <BPagination.Prev />
+        {/* <BPagination.First />
+        <BPagination.Prev /> */}
         {items.map((item) => (
           <BPagination.Item key={item} active={item === active} onClick={()=>choosePageNumber(item)}>
             {item}
           </BPagination.Item>
         ))}
-        <BPagination.Next />
-        <BPagination.Last />
+        {/* <BPagination.Next />
+        <BPagination.Last /> */}
       </BPagination>
     </div>
   );
