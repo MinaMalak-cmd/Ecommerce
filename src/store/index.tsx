@@ -1,9 +1,8 @@
 import { createSlice, configureStore} from "@reduxjs/toolkit";
 import data from "../data/db.json";
-import useCheckMobile from "../hooks/useCheckMobile";
 
 const tempProducts = data.products;
-const productInitialState = {product:tempProducts};
+const productInitialState = {product:tempProducts,page:1,totalPages:1,total:tempProducts.length,productsPerPage:[],limit:4};
 const productSlice = createSlice({
     name: "product",
     initialState: productInitialState,
@@ -34,19 +33,21 @@ const productSlice = createSlice({
           state.product = productsCopy.sort((a:any, b:any) => b.name.localeCompare(a.name));
         }
       },
-      paginateProducts: (state:any, { payload: { page=1,limit=6 } }) => {
-        let total = state.product.length;
-        const pageLimit = Math.ceil(total / limit);
+      paginateProducts: (state:any, { payload: { page=1} }) => {
+        const total = state.total;
+        const limit = state.limit;
         const start = (page - 1)* limit;
         const end = start + limit;
-        // let result = [...state.product];
-        // result = (end === total) ?
-        //     result.slice(start+1) :
-        //     result.slice(start, end);
-           return (end === total) ?
-            state.product.slice(start+1) :
-            state.product.slice(start, end);
-        // return result;    
+        let result = [...state.product];
+        result = (end === total) ?
+            result.slice(start+1) :
+            result.slice(start, end);
+        state.page = page;  
+        state.productsPerPage=result;
+        state.totalPages = Math.ceil(total/limit);
+      },
+      setLimit: (state:any, { payload: { limit=4 } }) => {
+        state.limit = limit;
       },
     },
   });
