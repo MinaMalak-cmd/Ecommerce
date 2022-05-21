@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import "../../App.css";
-import { IProduct } from "../../Interface/IProduct";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { productActions, categories } from "../../store/index";
 import useCheckMobile from "../../hooks/useCheckMobile";
 import { Modal } from "react-bootstrap";
