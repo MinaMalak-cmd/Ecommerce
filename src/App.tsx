@@ -37,7 +37,7 @@ function App() {
     if (firstRender.current) {
       firstRender.current = false;
       dispatch(productActions.setLimit({limit: limit}));
-      dispatch(productActions.paginateProducts({page:2}));
+      dispatch(productActions.paginateProducts({page:1}));
     } else if (!firstRender.current && cartItems?.length > 0) {
       handleShow();
     }

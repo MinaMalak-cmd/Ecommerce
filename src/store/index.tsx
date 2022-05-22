@@ -33,7 +33,7 @@ const productSlice = createSlice({
           state.product = productsCopy.sort((a:any, b:any) => b.name.localeCompare(a.name));
         }
       },
-      paginateProducts: (state:any, { payload: { page=1} }) => {
+      paginateProducts: (state:any, { payload: { page=1 } }) => {
         const total = state.total;
         const limit = state.limit;
         const start = (page - 1)* limit;

@@ -1,11 +1,14 @@
-import React from "react";
+import react,{useState} from "react";
 import { Pagination as BPagination } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
+import { productActions } from "../../store/index";
 
 function Pagination() {
-  let active = 2;
+  const dispatch = useDispatch();
+  const [activePage, setActivePage] = useState(1);
   function choosePageNumber(number: any) {
-    console.log(number);
+    setActivePage(number);
+    dispatch(productActions.paginateProducts({ page: number }));
   }
   const pageLimit = useSelector((state: any) => state.product.totalPages);
   let items = [];
@@ -21,7 +24,7 @@ function Pagination() {
         {items.map((item) => (
           <BPagination.Item
             key={item}
-            active={item === active}
+            active={item === activePage}
             onClick={() => choosePageNumber(item)}
           >
             {item}
