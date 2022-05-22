@@ -17,12 +17,13 @@ function App() {
   const handleClose = () => setCartShow(false);
   const handleShow = () => setCartShow(true);
   const [filterSettings, setFilterSettings] = useState(false);
-  // let products = useSelector((state: any) => state.product.product);
+  let products = useSelector((state: any) => state.product.product);
   // products = useCheckMobile() ? products.slice(0, 4) : products.slice(0, 6);
   let limit = useCheckMobile() ? 4 : 6;
   let all = useSelector((state: any) => state.product);
+  console.log("🚀 ~ file: App.tsx ~ line 24 ~ App ~ all", all)
   let productsPerPage = useSelector((state: any) => state.product.productsPerPage);
-  console.log("🚀 ~ file: App.tsx ~ line 22 ~ App ~ all", all)
+  // console.log("🚀 ~ file: App.tsx ~ line 22 ~ App ~ all", all)
   function dispatchCart(product: IProduct) {
     dispatch(cartActions.addToCart(product));
     handleShow();
@@ -40,8 +41,8 @@ function App() {
   useLayoutEffect(() => {
     if (firstRender.current) {
       firstRender.current = false;
-      dispatch(productActions.setLimit(6));
-      dispatch(productActions.paginateProducts(2));
+      dispatch(productActions.setLimit({limit: limit}));
+      dispatch(productActions.paginateProducts({page:2}));
     } else if (!firstRender.current && cartItems?.length > 0) {
       handleShow();
     }

@@ -40,13 +40,15 @@ const productSlice = createSlice({
         const end = start + limit;
         let result = [...state.product];
         result = (end === total) ?
-            result.slice(start+1) :
-            result.slice(start, end);
+        result.slice(start) :
+        result.slice(start, end);
+        console.log("🚀 ~ file: index.tsx ~ line 43 ~ result", limit)
+        
         state.page = page;  
         state.productsPerPage=result;
         state.totalPages = Math.ceil(total/limit);
       },
-      setLimit: (state:any, { payload: { limit=4 } }) => {
+      setLimit: (state:any, { payload: { limit } }) => {
         state.limit = limit;
       },
     },
