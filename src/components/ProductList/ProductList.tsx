@@ -8,7 +8,7 @@ import { IProduct } from "../../Interface/IProduct";
 import Pagination from "../../components/Pagination/Pagination";
 
 interface IProps {
-  products: Array<IProduct>;
+  products: Array<IProduct>,
 }
 function ProductList({ products }: IProps) {
   const dispatch = useDispatch();
