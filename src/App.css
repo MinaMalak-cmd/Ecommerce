@@ -259,9 +259,9 @@ product-list__sort-direction-button:active{
     width: 0%;
   }
   .product-list__items__products__container__product {
-    max-width: 100%;
-    width: 363px;
-    height: 485px;
+    max-width: 90%;
+    min-width: 60%;
+    height: 250px;
     margin: auto;
     margin-bottom: 120px;
   }
