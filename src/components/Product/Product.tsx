@@ -9,12 +9,8 @@ interface IProps {
 
 function Product(props: IProps) {
   const product = props.product;
-  function clickHandler() {
-    console.log("clicked");
-  }
   const [buttonShow, setButtonShow] = useState(false);
   const dispatch = useDispatch();
-  const cartItems = useSelector((state:any) => state.cart.cart);
   function dispatchCart(product:IProduct) {
     dispatch(cartActions.addToCart(product));
   }

@@ -11,6 +11,7 @@ function Pagination() {
     dispatch(productActions.paginateProducts({ page: number }));
   }
   const pageLimit = useSelector((state: any) => state.product.totalPages);
+  console.log("🚀 ~ file: Pagination.tsx ~ line 14 ~ Pagination ~ pageLimit", pageLimit)
   let items = [];
   for (let number = 1; number <= pageLimit; number++) {
     items.push(number);

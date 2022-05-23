@@ -16,10 +16,11 @@ const productSlice = createSlice({
             currentProducts.push(product)
           }
         }
-        let x = {...paginateState(state,currentProducts)};
+        let x = {...paginateState(state.limit,state.page,currentProducts)};
+        // console.log("🚀 ~ file: index.tsx ~ line 20 ~ x", x)
         state.productsPerPage = x.productsPerPage;
         state.totalPages = x.totalPages;
-        console.log("states",state.productsPerPage,state.totalPages);
+        // console.log("🚀 ~ file: index.tsx ~ line 22 ~ totalPages", state.totalPages)
         state.product = currentProducts;
       },
       sortProducts: (state:any, { payload: { sortName,direction } }) => {
@@ -54,16 +55,20 @@ const productSlice = createSlice({
       },
     },
   });
-const paginateState = (state:any,products:any) => {
-  const total = state.total;
-  const limit = state.limit;
-  const start = (state.page - 1)* limit;
+const paginateState = (limit:number,page:number,products:any) => {
+  const total = products.length;
+  const start = (page - 1)* limit;
   const end = start + limit;
+  console.log("🚀 ~ file: index.tsx ~ line 22 ~ total", { total,products,start,end})
   let result = [...products];
   result = (end === total) ? result.slice(start) :
   result.slice(start, end);
   let productsPerPage=result;
   let totalPages = Math.ceil(total/limit);
+  console.log("🚀 ~ file: index.tsx ~ line 68 ~ paginateState ~ totalPages", totalPages)
+  // console.log("🚀 ~ file: index.tsx ~ line 68 ~ paginateState ~ result.length", result.length)
+  // console.log("🚀 ~ file: index.tsx ~ line 69 ~ paginateState ~ limit", limit)
+  // console.log("🚀 ~ file: index.tsx ~ line 70 ~ paginateState ~ totalPages", totalPages)
   return {productsPerPage,totalPages};
 }
 const cartInitialState = {cart:localStorage.getItem("cart") ? JSON.parse(localStorage.getItem("cart")) : []};
