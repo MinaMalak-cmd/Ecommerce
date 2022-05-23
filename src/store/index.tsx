@@ -16,6 +16,10 @@ const productSlice = createSlice({
             currentProducts.push(product)
           }
         }
+        let x = {...paginateState(state,currentProducts)};
+        state.productsPerPage = x.productsPerPage;
+        state.totalPages = x.totalPages;
+        console.log("states",state.productsPerPage,state.totalPages);
         state.product = currentProducts;
       },
       sortProducts: (state:any, { payload: { sortName,direction } }) => {
@@ -39,8 +43,7 @@ const productSlice = createSlice({
         const start = (page - 1)* limit;
         const end = start + limit;
         let result = [...state.product];
-        result = (end === total) ?
-        result.slice(start) :
+        result = (end === total) ? result.slice(start) :
         result.slice(start, end);
         state.page = page;  
         state.productsPerPage=result;
@@ -51,7 +54,18 @@ const productSlice = createSlice({
       },
     },
   });
-
+const paginateState = (state:any,products:any) => {
+  const total = state.total;
+  const limit = state.limit;
+  const start = (state.page - 1)* limit;
+  const end = start + limit;
+  let result = [...products];
+  result = (end === total) ? result.slice(start) :
+  result.slice(start, end);
+  let productsPerPage=result;
+  let totalPages = Math.ceil(total/limit);
+  return {productsPerPage,totalPages};
+}
 const cartInitialState = {cart:localStorage.getItem("cart") ? JSON.parse(localStorage.getItem("cart")) : []};
 const cartSlice = createSlice({
     name: "cart",
